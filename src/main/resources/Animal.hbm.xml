@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.revature.model.Employee" table="employee">
+		<id name="eid" column="eid"></id>
+		<property name="eUserName" column="eusername" />
+		<property name="ePassword" column="epassword"></property>
+		<property name="eFirstName" column="efirstname"></property>		
+		<property name="eLastName" column="elastname"></property>
+		<property name="email" column="email"></property>
+		<property name="positionid" column="positionid"></property>
+	</class>
+</hibernate-mapping>

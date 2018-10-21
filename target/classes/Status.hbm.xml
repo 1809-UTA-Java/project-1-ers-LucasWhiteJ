@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.revature.model.Status"
+		table="reimbursementstatus">
+		<id name="rsID" column="rsid"></id>
+		<property name="rStatus" column="rstatus" />
+	</class>
+</hibernate-mapping>
