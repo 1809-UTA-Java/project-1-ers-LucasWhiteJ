@@ -31,19 +31,9 @@ public class SubmitReimbursement extends HttpServlet {
 	TypeDao tdao = new TypeDao();
 	TypeService tService = new TypeService(tdao);
 
-	/*     
-	*//**
-		 * @see HttpServlet#HttpServlet()
-		 */
+	 public SubmitReimbursement() { super(); // TODO Auto-generated constructor stub 
+	 }
 
-	/*
-	 * public SubmitReimbursement() { super(); // TODO Auto-generated constructor
-	 * stub }
-	 * 
-	 *//**
-		 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-		 *      response)
-		 */
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text");
@@ -56,16 +46,11 @@ public class SubmitReimbursement extends HttpServlet {
 
 		if (path == null || path.equals("/")) {
 			String obj = om.writeValueAsString(reimbursements);
-			pw.println(obj);
+			pw.println(obj + " ");
 			return;
 		}
-
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		double amt = Double.parseDouble(req.getParameter("amount"));
 		String desc = req.getParameter("description");

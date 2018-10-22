@@ -14,7 +14,6 @@ import com.revature.model.Reimbursements;
 public class EmployeeDao {
 
 	public List<Employee> getEmployees() {
-		// Hibernate version
 		Session session = ConnectionUtil.getSession();
 		return session.createQuery("from Employee").list();
 	}
@@ -34,19 +33,6 @@ public class EmployeeDao {
 
 	@SuppressWarnings("unchecked")
 	public Employee getEmployeeInformation(int eID) {
-		/*Object found = null;
-		Session session = ConnectionUtil.getSession();
-		List<Employee> employees = new ArrayList<>();
-		Query ps = null;
-		ResultSet rs = null;
-		employees = session
-				.createQuery("select e.eid, e.eUserName, e.ePassword, e.eFirstName, e.eLastName, e.email, p.position "
-						+ "from Employee as e, Position as p where e.eid = :eID and e.positionid = p.positionID").setInteger("eID", eID).list();
-		if (!employees.isEmpty()) {
-			found = employees.get(0);
-		}*/
-		//ps.setInteger("eID", eID);
-		//employees = ps.list();
 		Employee found = null;
 		List<Employee> employees = new ArrayList<>();
 		Session session = ConnectionUtil.getSession();

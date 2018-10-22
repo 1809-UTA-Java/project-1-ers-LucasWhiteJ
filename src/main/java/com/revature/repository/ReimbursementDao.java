@@ -50,7 +50,6 @@ public class ReimbursementDao {
 		ps.executeUpdate();
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Reimbursements> getPendingReimbursementByAuthorID(int uID) {
 		Reimbursements found = null;
 		List<Reimbursements> reimbursements = new ArrayList<>();
@@ -62,5 +61,58 @@ public class ReimbursementDao {
 		ps.setInteger("uID", uID);
 		reimbursements = ps.list();
 		return reimbursements;
+	}
+	
+	public List<Reimbursements> getAllPendingReimbursementByAuthorID() {
+		Reimbursements found = null;
+		List<Reimbursements> reimbursements = new ArrayList<>();
+		Session session = ConnectionUtil.getSession();
+		Query ps = null;
+		ResultSet rs = null;
+		ps = session.createQuery("select r.rID, r.ramount, r.rDescription, r.rSubmitted, t.rType "
+				+ "from Reimbursements as r, Type as t where r.rStatus = 1 and r.rType = t.rtID");
+		reimbursements = ps.list();
+		return reimbursements;
+	}
+
+	public List<Reimbursements> getApprovedReimbursementByAuthorID(int uID) {
+		Reimbursements found = null;
+		List<Reimbursements> reimbursements = new ArrayList<>();
+		Session session = ConnectionUtil.getSession();
+		Query ps = null;
+		ResultSet rs = null;
+		ps = session.createQuery("select r.rID, r.ramount, r.rDescription, r.rSubmitted, r.rSubmitted, m.eUserName, t.rType "
+				+ "from Reimbursements as r, Type as t, Employee as m where r.rStatus = 2 and r.uIDAuthor = :uID and r.rType = t.rtID and m.eid = r.uIDResolver");
+		ps.setInteger("uID", uID);
+		reimbursements = ps.list();
+		return reimbursements;
+	}
+	
+	public List<Reimbursements> getAllApprovedReimbursementByAuthorID() {
+		Reimbursements found = null;
+		List<Reimbursements> reimbursements = new ArrayList<>();
+		Session session = ConnectionUtil.getSession();
+		Query ps = null;
+		ResultSet rs = null;
+		ps = session.createQuery("select r.rID, r.ramount, r.rDescription, r.rSubmitted, r.rSubmitted, m.eUserName, t.rType "
+				+ "from Reimbursements as r, Type as t, Employee as m where r.rStatus = 2 and r.rType = t.rtID and m.eid = r.uIDResolver");
+		reimbursements = ps.list();
+		return reimbursements;
+	}
+	
+	public void approveOrDenyReimbursement(int rID, int status, int uID) {
+		Session session = ConnectionUtil.getSession();
+		Query ps = null;
+		Timestamp resolved = new Timestamp(System.currentTimeMillis());
+
+		ps = session.createSQLQuery(
+				"update Reimbursements set uidresolver = :uID, rresolved = :resolved, rstatus = :status where rid = :rID");
+		ps.setInteger("uID", uID);
+		ps.setTimestamp("resolved", resolved);
+		ps.setInteger("status", status);
+		ps.setInteger("rID", rID);
+		ps.executeUpdate();
+		ps = session.createSQLQuery("commit");
+		ps.executeUpdate();
 	}
 }

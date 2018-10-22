@@ -17,13 +17,26 @@ public class TypeDao {
 
 	public Type getTypeByTypeName(String type) {
 		Type found = null;
-		List<Type> employees = new ArrayList<>();
+		List<Type> types = new ArrayList<>();
 		Session session = ConnectionUtil.getSession();
 
-		employees = session.createQuery("from Type where rtype = :typename").setString("typename", type)
+		types = session.createQuery("from Type where rtype = :typename").setString("typename", type)
 				.list();
-		if (!employees.isEmpty()) {
-			found = employees.get(0);
+		if (!types.isEmpty()) {
+			found = types.get(0);
+		}
+		return found;
+	}
+	
+	public Type getTypeByTypeID(int type) {
+		Type found = null;
+		List<Type> types = new ArrayList<>();
+		Session session = ConnectionUtil.getSession();
+
+		types = session.createQuery("from Type where rtype = :typeID").setInteger("typID", type)
+				.list();
+		if (!types.isEmpty()) {
+			found = types.get(0);
 		}
 		return found;
 	}

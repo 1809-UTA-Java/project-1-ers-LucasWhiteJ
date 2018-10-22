@@ -37,18 +37,29 @@ public class LoginServlet extends HttpServlet {
 			if (path == null || path.equals("/")) {
 				if (a.geteUserName().equals(userName)) {
 					if (a.getePassword().equals(password)) {
-						this.getServletConfig().getServletContext().setAttribute("currentUser", a.getEid());
-						resp.sendRedirect("EmployeeHomePage.html");
+						if (a.getPositionid() == 1) {
+							this.getServletConfig().getServletContext().setAttribute("currentUser", a.getEid());
+							resp.sendRedirect("ManagerHomePage.html");
+						} else {
+							this.getServletConfig().getServletContext().setAttribute("currentUser", a.getEid());
+							resp.sendRedirect("EmployeeHomePage.html");
+						}
 					} else
 						resp.sendRedirect("index.html");
 				}
 			}
 		}
+	}
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String path = req.getPathInfo();
 
-		/*
-		 * String[] pathSplits = path.split("/");
-		 * 
-		 * if (pathSplits.length != 2) {
-		 * resp.sendError(HttpServletResponse.SC_BAD_REQUEST); return; }
-		 */ }
+		List<Employee> employees = aService.getEmployees();
+		ObjectMapper om = new XmlMapper();
+		String userName = req.getParameter("username");
+		String password = req.getParameter("password");
+
+		this.getServletConfig().getServletContext().removeAttribute("currentUser");
+		resp.sendRedirect("index.html");
+	}
 }

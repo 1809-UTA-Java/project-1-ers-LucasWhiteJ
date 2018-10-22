@@ -6,12 +6,14 @@
 </head>
 <body>
 	<h1>This is the Employee Home Page</h1>
+	
 	<form action="/Project1-LucasWhite/SubmitReimbursement" method="post">
 		Amount<input type="text" name="amount">
 		Description<input type="text" name="description">
 		Type<input type="text" name="type">
 		<button type="submit">Submit Reimbursement Request</button>
 	</form>
+	
 	<form action="/Project1-LucasWhite/EmployeeServlet" method="post">
 		User Name<input type="text" name="userName">
 		Password<input type="text" name="password">
@@ -21,14 +23,38 @@
 		Position<input type="text" name="position">
 		<button type="submit">Update Your Information</button>
 	</form>
+	
+	<form action="/Project1-LucasWhite/ManagerReimbursementServlet" method="get">
+		Would you like to view pending or approved reimbursement requests?<input type="text" name="input">
+		<button type="submit">View Reimbursement Requests</button>
+	</form>
+	
+	<form action="/Project1-LucasWhite/ManagerReimbursementServlet" method="post">
+		ID of reimbursement request to approve or deny<input type="text" name="rID">
+		Status(approved or denied)<input type="text" name="status">
+		<button type="submit">Update Reimbursement Request</button>
+	</form>
+	
+	<form action="/Project1-LucasWhite/ManagerEmployeeServlet" method="post">
+		ID of Employee who's reimbursement requests you would like to lookup<input type="text" name="eID">
+		<button type="submit">Lookup Reimbursement Request</button>
+	</form>
+	
 	<form action="/Project1-LucasWhite/EmployeeServlet" method="get">
 		<button type="submit">View Your Information</button>
 	</form>
+	
+	<form action="/Project1-LucasWhite/ManagerEmployeeServlet" method="get">
+		<button type="submit">View All Employees</button>
+	</form>
+	
 	<form action="/Project1-LucasWhite/SubmitReimbursement" method="get">
 		<button type="submit">View Pending Reimbursement Requests</button>
 	</form>
+	
 	<form action="/Project1-LucasWhite/LoginServlet" method="post">
 		<button type="submit">Logout</button>
 	</form>
+	
 </body>
 </html>
