@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Home Page</title>
+</head>
+<body>
+	<h1>This is the Employee Home Page</h1>
+	<form action="/Project1-LucasWhite/SubmitReimbursement" method="post">
+		Amount<input type="text" name="amount">
+		Description<input type="text" name="description">
+		Type<input type="text" name="type">
+		<button type="submit">Submit Reimbursement Request</button>
+	</form>
+	<form action="/Project1-LucasWhite/EmployeeServlet" method="post">
+		User Name<input type="text" name="userName">
+		Password<input type="text" name="password">
+		First Name<input type="text" name="fName">
+		Last Name<input type="text" name="lName">
+		Email<input type="text" name="email">
+		Position<input type="text" name="position">
+		<button type="submit">Update Your Information</button>
+	</form>
+	<form action="/Project1-LucasWhite/EmployeeServlet" method="get">
+		<button type="submit">View Your Information</button>
+	</form>
+	<form action="/Project1-LucasWhite/SubmitReimbursement" method="get">
+		<button type="submit">View Pending Reimbursement Requests</button>
+	</form>
+	<form action="/Project1-LucasWhite/LoginServlet" method="post">
+		<button type="submit">Logout</button>
+	</form>
+</body>
+</html>
